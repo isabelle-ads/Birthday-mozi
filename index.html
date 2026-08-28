@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário, Meu Amor! ✨</title>
+  <!-- Google Fonts: Great Vibes (Bold Script) e Courier Prime (Monospace) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --fundo-azul: #081225;
+      --azul-card: #0d1b2a;
+      --dourado: #f59e0b;
+      --dourado-brilho: #fbbf24;
+      --texto-branco: #ffffff;
+      --texto-suave: #cbd5e1;
+      
+      --fonte-principal: 'Great Vibes', 'Brush Script MT', cursive;
+      --fonte-texto: 'Courier Prime', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--fonte-texto);
+      background-color: var(--fundo-azul);
+      color: var(--texto-branco);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, .titulo-script {
+      font-family: var(--fonte-principal);
+      font-weight: bold;
+    }
+
+    /* --- TELA INICIAL (PRESENTE REFEITO E REALISTA) --- */
+    #tela-presente {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1e293b 0%, var(--fundo-azul) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      transition: opacity 1.2s ease, visibility 1.2s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #tela-presente.esconder {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .titulo-presente {
+      color: var(--dourado-brilho);
+      font-size: 3.5rem;
+      margin-bottom: 5px;
+      line-height: 1.2;
+    }
+
+    .subtitulo-presente {
+      color: var(--texto-suave);
+      font-size: 1rem;
+      font-family: var(--fonte-texto);
+      letter-spacing: 1px;
+      margin-bottom: 50px;
+    }
+
+    /* Caixinha 3D Interativa */
+    .presente-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      cursor: pointer;
+      animation: flutuarPresente 2.5s ease-in-out infinite alternate;
+    }
+
+    /* Tampa do Presente */
+    .presente-tampa {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 160px;
+      height: 35px;
+      background: linear-gradient(135deg, var(--dourado-brilho), var(--dourado));
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 3;
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+    }
+
+    /* Corpo da Caixa */
+    .presente-corpo {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 140px;
+      height: 115px;
+      background: linear-gradient(135deg, var(--dourado), #d97706);
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
+      z-index: 1;
+    }
+
+    /* Fita Vertical na Tampa e Corpo */
+    .fita-v {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 100%;
+      background: linear-gradient(90deg, #1e3a8a, var(--azul-card));
+    }
+
+    /* Fita Horizontal no Corpo */
+    .fita-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 26px;
+      background: linear-gradient(180deg, #1e3a8a, var(--azul-card));
+    }
+
+    /* Laço Dourado/Azul */
+    .laco-3d {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 30px;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+    }
+
+    .laco-3d::before, .laco-3d::after {
+      content: '';
+      width: 28px;
+      height: 28px;
+      border: 5px solid var(--azul-card);
+      border-radius: 50% 50% 0 50%;
+      background-color: #1e3a8a;
+      display: inline-block;
+    }
+
+    .laco-3d::before {
+      transform: rotate(45deg);
+      margin-right: -5px;
+    }
+
+    .laco-3d::after {
+      transform: rotate(-45deg);
+      margin-left: -5px;
+    }
+
+    /* Efeito de abertura ao clicar */
+    .presente-container.aberto .presente-tampa {
+      transform: translateY(-80px) rotate(-15deg);
+    }
+
+    .presente-container:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes flutuarPresente {
+      from { transform: translateY(0); }
+      to { transform: translateY(-18px); }
+    }
+
+    /* --- CONTEÚDO DO SITE PRINCIPAL --- */
+    header {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: radial-gradient(circle at center, #1e293b 0%, var(--fundo-azul) 100%);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      color: var(--dourado-brilho);
+      text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+      margin-bottom: 15px;
+      animation: aparecerSurpresa 1.2s ease-out;
+      line-height: 1.1;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--texto-suave);
+      font-family: var(--fonte-texto);
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .mensagem-card {
+      background-color: var(--azul-card);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      padding: 35px;
+      text-align: center;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .mensagem-card.visivel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mensagem-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: var(--dourado);
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
+    }
+
+    .mensagem-card h2 {
+      color: var(--dourado-brilho);
+      margin-bottom: 15px;
+      font-size: 2.8rem;
+    }
+
+    .mensagem-card p {
+      font-size: 1rem;
+      color: var(--texto-branco);
+      font-family: var(--fonte-texto);
+    }
+
+    .galeria-titulo {
+      text-align: center;
+      color: var(--dourado-brilho);
+      font-size: 3.2rem;
+      margin-bottom: 40px;
+    }
+
+    .lista-fotos {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .card-foto {
+      background-color: var(--azul-card);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .card-foto.visivel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-foto:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: var(--dourado);
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
+    }
+
+    .card-foto img {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+    }
+
+    .card-foto .legenda {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-foto .legenda p {
+      font-size: 1rem;
+      color: var(--texto-branco);
+      font-family: var(--fonte-texto);
+    }
+
+    .card-foto .legenda span {
+      color: var(--dourado);
+      font-size: 0.85rem;
+      display: block;
+      margin-top: 5px;
+      font-family: var(--fonte-texto);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--dourado-brilho);
+      font-size: 1.1rem;
+      font-family: var(--fonte-texto);
+    }
+
+    @keyframes aparecerSurpresa {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (min-width: 768px) {
+      .card-foto {
+        flex-direction: row;
+      }
+      .card-foto:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+      .card-foto img {
+        width: 55%;
+        height: 320px;
+      }
+      .card-foto .legenda {
+        width: 45%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TELA DE PRESENTES INICIAL REFORÇADA -->
+  <div id="tela-presente">
+    <h1 class="titulo-presente">Você tem uma surpresa!</h1>
+    <p class="subtitulo-presente">clique no presente para abrir</p>
+    
+    <div class="presente-container" id="btn-abrir">
+      <div class="laco-3d"></div>
+      <div class="presente-tampa">
+        <div class="fita-v"></div>
+      </div>
+      <div class="presente-corpo">
+        <div class="fita-v"></div>
+        <div class="fita-h"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL DO SITE -->
+  <header>
+    <h1>Feliz Aniversário, Meu Amor! ✨💗</h1>
+    <p>Nossos pequenos momentos para guardar...</p>
+  </header>
+
+  <div class="container">
+    
+    <section class="mensagem-card card-animado">
+      <h2>Para o Meu Amor</h2>
+      <p>
+        Cada momento ao seu lado é único, quero sempre poder partilhar do melhor de e celebrar cada um deles com você! Te amo muito minha vida!!! 🎉🎂
+      </p>
+    </section>
+
+    <h2 class="galeria-titulo">O início de tudo em registros pra nós 📸</h2>
+    
+    <div class="lista-fotos">
+      
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img01.jpeg" alt="Foto 1">
+        <div class="legenda">
+          <p>Meu Porto seguro onde encontro paz, minha alegria e minha maior certeza</p>
+        </div>
+      </div>
+
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img02.jpeg" alt="Foto 2">
+        <div class="legenda">
+          <p>Meu melhor amigo com que sei que posso contar mil vezes se precisar</p>
+        </div>
+      </div>
+
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img03.jpeg" alt="Foto 3">
+        <div class="legenda">
+          <p>Você é a melhor parte do meu dia, mesmo estando longe faz meu coração sorrir</p>
+        </div>
+      </div>
+
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img04.jpeg" alt="Foto 4">
+        <div class="legenda">
+          <p>Você faz cada momento ser único e especial, e eu conto cada segundo para poder estar do seu lado</p>
+        </div>
+      </div>
+
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img05.jpeg" alt="Foto 5">
+        <div class="legenda">
+          <p>Minha respondida, muito mais do que pedi a Deus, Ele me deu você meu amor</p>
+        </div>
+      </div>
+
+      <div class="card-foto card-animado">
+        <img src="/imagens.img/img06.jpeg" alt="Foto 6">
+        <div class="legenda">
+          <p>Te amo mais do que palavras podem expressar</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer id="footer">
+    <p>&lt; Feito com todo o meu amor 💙✨ /&gt;</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const btnAbrir = document.getElementById('btn-abrir');
+    const telaPresente = document.getElementById('tela-presente');
+
+    btnAbrir.addEventListener('click', () => {
+      // Efeito de abertura físico da tampa
+      btnAbrir.classList.add('aberto');
+
+      // Disparo duplo de confetes
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#f59e0b', '#fbbf24', '#ffffff', '#3b82f6']
+        });
+      }, 150);
+
+      // Transição suave para liberar a tela principal
+      setTimeout(() => {
+        telaPresente.classList.add('esconder');
+      }, 700);
+    });
+
+    // Animação de entrada dos cards
+    const cards = document.querySelectorAll('.card-animado');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visivel');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+
+    // Disparo de Confetes no final da página
+    let confetesDisparados = false;
+    const footer = document.getElementById('footer');
+
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !confetesDisparados) {
+          confetesDisparados = true;
+          
+          const duracao = 3 * 1000;
+          const fim = Date.now() + duracao;
+
+          (function frame() {
+            confetti({
+              particleCount: 5,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0 },
+              colors: ['#f59e0b', '#fbbf24', '#ffffff', '#3b82f6']
+            });
+            confetti({
+              particleCount: 5,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1 },
+              colors: ['#f59e0b', '#fbbf24', '#ffffff', '#3b82f6']
+            });
+
+            if (Date.now() < fim) {
+              requestAnimationFrame(frame);
+            }
+          }());
+        }
+      });
+    }, { threshold: 0.5 });
+
+    footerObserver.observe(footer);
+  </script>
+
+</body>
+</html>
